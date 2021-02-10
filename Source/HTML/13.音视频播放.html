@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        audio 标签用来向页面中引入一个外部的音频文件
+            音视频文件引入时，默认情况下不允许用户自己控制
+            属性：
+                controls 是否允许用户控制播放
+                autoplay 音频文件是否自动播放
+                    -目前大部分浏览器都不会自动对音乐播放
+                loop 循环播放
+                src 引用路径
+
+     -->
+     <audio src="./audio.mp3" controls autoplay></audio>
+     <!-- 除了通过src来指定外部文件的路径以外，还可以通过source来指定文件 -->
+     <audio controls>
+         对不起，您的浏览器不支持  <!-- 支持的浏览器播放,不支持的显示文字-->
+         <source src="./audio.mp3">
+         <source src="./audio.ogg"><!--优先使用第一个，格式不支持的使用第二个-->
+     </audio>
+
+      <!-- 使用video标签--视频 
+                    -使用方式基本和 audio基本一样
+            -->
+            <video controls>
+                <source src="./video.mp4">
+            </video>
+</body>
+</html>

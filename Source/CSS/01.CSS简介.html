@@ -1,0 +1,38 @@
+<!-- 
+    网页分为三个部分
+        结构（HTML）
+        表现（CSS）
+        行为（JavaScript）
+    CSS
+        -层叠样式表
+        -网页实际是一个多层的结构，通过CSS可以分别为网页的每层设置样式
+           而最终只能看到网页上最上边一层
+        -总之，CSS用来设置网页中元素的样式
+
+
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+    <title>CSS简介</title>
+
+
+     <!-- 
+         外部样式表
+            -可以将CSS样式编写到外部的CSS文件中
+                通过link标签引入外部的CSS文件
+            -外部样式表需要link标签来引入（必须在head中引用）
+                意味着只要想使用这些样式的网页都可以对其引用
+                使杨舍可以在不同的页面中进行复用
+            -将样式编写到外部的CSS文件中，可以使用到浏览器的缓存机制
+                从而加快网页的加载速度，提高用户体验
+
+    -->
+<link rel="stylesheet" href="./style.css">
+ </head>
+ <body>
+     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae minima odit expedita commodi placeat rem omnis, earum totam quibusdam aliquid voluptas quos hic vero itaque officiis dignissimos quaerat laborum voluptatem!</p>
+
+ </body>
+ </html>

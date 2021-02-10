@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /*
+        将所有的段落设置为红色（字体颜色）
+
+        元素选择器
+            作用：根据标签名选中指定元素
+
+        */
+
+      /*  p{
+            color: red;
+        }
+        h1{
+            color: rgb(green, green, red);
+        }*/
+
+        /* 
+        将第一句变成红色
+        id选择器：
+            作用：根据id的属性值选中一个元素
+            语法：#id属性值{}
+        */
+        /*
+        #p1{
+            color: red;
+        }*/
+
+        /* 
+            讲第二句和第三局变成蓝色
+            class标签，和id类似，不同的是class可以重复使用
+
+            类选择器
+                作用：根据元素的class属性值选中一组元素
+                语法：.class属性值{}
+
+        */
+        .blue{
+            color: blue;  
+        }
+        /* 
+            通配选择器
+                作用:选用页面中的所有元素
+                语法:*
+        */
+        *{
+            color: red;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>我是标题！</h1>
+    <p id="p1">少小离家老大回</p>
+    <p class="blue">乡音难改鬓毛衰</p>
+    <p class="blue">儿童相见不相识</p>
+    <p class="blue abc">笑问客从何处来</p>
+    <!-- 可以使用多个class 名之间用空格隔开 任意一个名都可以进行控制 -->
+    <p>秋水共长天一色</p>
+    <p>落霞与孤鹜齐飞</p>
+</body>
+</html>
