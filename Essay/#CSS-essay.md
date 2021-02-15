@@ -490,7 +490,7 @@ p ~ span{color: black:}
   }
   ```
 
-  ### 所有标签共有
+### 所有样式共有
 
 - :hover 用来表示鼠标移入的状态
 
@@ -504,5 +504,178 @@ p ~ span{color: black:}
                a:active{color: yellow;}
     ```
 
-    
+## 伪元素选择器
 
+- 伪元素，表示页面中一些特殊的并不真实存在的元素（特殊的位置）
+
+- 伪元素使用 ::开头
+
+    ```css
+     ::first-letter  表示第一个字母
+     ::first-line  表示第一行
+     ::selection 表示选中的内容
+    
+     ::before 表示元素开始
+     ::after 表示元素的最后
+         -- before和after 必须结合contene属性来使用
+    before 和  after  功能类似于<q></q> 标签的双引号 不可复制
+    ```
+
+- ```html
+    <style>
+    p::first-letter{font-size: 50px;}
+    p::first-line{background-color: red;}
+    p::selection{background-color: greenyellow;}
+             
+             
+    div::before
+        {
+                 content: 'abc';
+                 color: red;
+         }
+    div::after
+        {
+                 content: 'hah';
+                 color: blue;
+         }
+             /* 因为abc 和 hah  通过CSS加进去的 所以无法选中 */
+        </style>
+    <body>
+        <div>hello hello hwo are you</div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi nesciunt sed qui illo sunt neque earum est dolore quas facilis aliquam aperiam rem quisquam facere dolores, odio numquam consectetur. Quod.</p>
+    
+    </body>
+    ```
+## 样式的继承
+
+    - 样式的继承，我们为一个元素设置的样式同时也会应用到它的后代元素上
+    - 只会影响后代元素
+    - 继承的设计视为了方便我们的开发，利用继承我们可以将一些通用的样式统一设置到共同的祖先元素上，这样只需设置一次即可让所有的元素都具有该样式
+    - 注意：并不是所有的样式都会被继承，比如背景相关的，布局相关的等这些样式都不会被继承
+    
+    ```html
+    <style>
+           
+            p{color: red;}
+            span{color: blue;}
+            
+        </style>
+    <body>
+        <p>我是一个p元素
+            <span>我是p元素中的span</span>
+        </p>
+        <span>我是P元素外的span</span>
+        <div>
+            我是div
+            <span>我是div中的span
+                <em>我是span中的em</em>
+            </span>
+        </div>
+    </body>
+    ```
+
+ ## 选择器的权重（优先级）
+
+    -  样式的冲突
+    
+      ​        -通过不同的选择器，选中相同的元素，并且为相为相同的样式设置不同的值
+    
+      ​          此时就发生的样式的冲突。发生样式的冲突时，应用哪个样式由选择器的权重（优先级）决定
+    
+    - 选择器的权重
+    
+      ​	内联（行内）样式     1,0,0,0
+    
+      ​	id选择器					0,1,0,0
+    
+      ​	类选择器					0,0,1,0
+    
+      ​	元素选择器				0,0,0,1
+    
+      ​	通配选择器				0,0,0,0
+    
+      ​	继承选择器				没有优先级
+    
+    - 比较优先级时，需要将所有的选择器的优先级进行相加进行计算，最后游戏那几越高，则越优先显示（分组选择器是单独计算）。选择器的累加不会超过其最大的数量级，比如，类选择器的在高也不会超过id选择器
+    
+    -  如果优先级计算后相同，此时优先级则使用靠下的样式
+    
+      ```html
+      <style>
+          .red{color: red;}
+          .di{color: blue;}/*此时，.id 选择器优先级高*/
+          
+          .di{color: blue;}
+          .red{color: red;}/*此时， .red 选择器优先级高*/
+      </style>
+      <body>
+          <div class="red di">
+              我是div
+          </div>
+      </body>
+      ```
+    
+    - 可以在某一个样式的后边添加 !important ，则此时该样式为最高的优先级
+    
+      ​        ☆注意：在开发中这个玩意一定要慎用
+    
+      ```css
+      .red{color: red !important;}/*优先级最高，甚至大于行内元素*/
+      ```
+    
+      ## 像素和百分比
+    
+      - 长度单位：
+    
+        ​          像素
+    
+        ​            -屏幕实际上是由一个个小点构成的
+    
+        ​            -不同屏幕的像素大小不同，像素越小的屏幕显示的效果越清晰
+    
+        ​            -所以同样的200px在不同的设备下显示效果不一样
+    
+        ​          百分比
+    
+        ​            -也可以将属性值设置为相对于其父元素属性的百分比
+    
+        ​            -设置百分比可以使子元素跟随父元素的改变而改变
+    
+      ```html
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <title>Document</title>
+          <style>
+              .box1{
+      
+                  /* 
+                      长度单位：
+                          像素
+                              -屏幕实际上是由一个个小点构成的
+                              -不同屏幕的像素大小不同，像素越小的屏幕显示的效果越清晰
+                              -所以同样的200px在不同的设备下显示效果不一样
+                          百分比
+                              -也可以将属性值设置为相对于其父元素属性的百分比
+                              -设置百分比可以使子元素跟随父元素的改变而改变
+      
+                   */
+                  width: 200px;
+                  height: 200px;
+                  background-color: pink;
+              }
+              .box2{
+                  width: 50%;  
+                  height: 50%;
+                  background-color: red;
+                  
+              }
+          </style>
+      </head>
+      <body>
+          <div class="box1"></div>
+          <div class="box2"></div>
+      </body>
+      </html>
+      ```
