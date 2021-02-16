@@ -548,134 +548,225 @@ p ~ span{color: black:}
     ```
 ## 样式的继承
 
-    - 样式的继承，我们为一个元素设置的样式同时也会应用到它的后代元素上
-    - 只会影响后代元素
-    - 继承的设计视为了方便我们的开发，利用继承我们可以将一些通用的样式统一设置到共同的祖先元素上，这样只需设置一次即可让所有的元素都具有该样式
-    - 注意：并不是所有的样式都会被继承，比如背景相关的，布局相关的等这些样式都不会被继承
-    
-    ```html
-    <style>
-           
-            p{color: red;}
-            span{color: blue;}
-            
-        </style>
-    <body>
-        <p>我是一个p元素
-            <span>我是p元素中的span</span>
-        </p>
-        <span>我是P元素外的span</span>
-        <div>
-            我是div
-            <span>我是div中的span
-                <em>我是span中的em</em>
-            </span>
-        </div>
-    </body>
-    ```
+- 样式的继承，我们为一个元素设置的样式同时也会应用到它的后代元素上
+- 只会影响后代元素
+- 继承的设计视为了方便我们的开发，利用继承我们可以将一些通用的样式统一设置到共同的祖先元素上，这样只需设置一次即可让所有的元素都具有该样式
+- 注意：并不是所有的样式都会被继承，比如背景相关的，布局相关的等这些样式都不会被继承
 
+```html
+<style>
+       
+        p{color: red;}
+        span{color: blue;}
+        
+    </style>
+<body>
+    <p>我是一个p元素
+        <span>我是p元素中的span</span>
+    </p>
+    <span>我是P元素外的span</span>
+    <div>
+        我是div
+        <span>我是div中的span
+            <em>我是span中的em</em>
+        </span>
+    </div>
+</body>
+```
  ## 选择器的权重（优先级）
 
-    -  样式的冲突
+
+-  样式的冲突
+
+  ​        -通过不同的选择器，选中相同的元素，并且为相为相同的样式设置不同的值
+
+  ​          此时就发生的样式的冲突。发生样式的冲突时，应用哪个样式由选择器的权重（优先级）决定
+
+- 选择器的权重
+
+  ​	内联（行内）样式     1,0,0,0
+
+  ​	id选择器					0,1,0,0
+
+  ​	类选择器					0,0,1,0
+
+  ​	元素选择器				0,0,0,1
+
+  ​	通配选择器				0,0,0,0
+
+  ​	继承选择器				没有优先级
+
+- 比较优先级时，需要将所有的选择器的优先级进行相加进行计算，最后游戏那几越高，则越优先显示（分组选择器是单独计算）。选择器的累加不会超过其最大的数量级，比如，类选择器的在高也不会超过id选择器
+
+-  如果优先级计算后相同，此时优先级则使用靠下的样式
+
+  ```html
+  <style>
+      .red{color: red;}
+      .di{color: blue;}/*此时，.id 选择器优先级高*/
+      
+      .di{color: blue;}
+      .red{color: red;}/*此时， .red 选择器优先级高*/
+  </style>
+  <body>
+      <div class="red di">
+          我是div
+      </div>
+  </body>
+  ```
+
+- 可以在某一个样式的后边添加 !important ，则此时该样式为最高的优先级
+
+  ​        ☆注意：在开发中这个玩意一定要慎用
+
+  ```css
+  .red{color: red !important;}/*优先级最高，甚至大于行内元素*/
+  ```
+
+
+  ## 单位
+
+  - 长度单位：
+
+    ​          像素
+
+    ​            -屏幕实际上是由一个个小点构成的
+
+    ​            -不同屏幕的像素大小不同，像素越小的屏幕显示的效果越清晰
+
+    ​            -所以同样的200px在不同的设备下显示效果不一样
+
+    ​          百分比
+
+    ​            -也可以将属性值设置为相对于其父元素属性的百分比
+
+    ​            -设置百分比可以使子元素跟随父元素的改变而改变
     
-      ​        -通过不同的选择器，选中相同的元素，并且为相为相同的样式设置不同的值
+    ​			em
     
-      ​          此时就发生的样式的冲突。发生样式的冲突时，应用哪个样式由选择器的权重（优先级）决定
+    ​			-相对于元素的字体大小来计算的  1em = 1font-size
     
-    - 选择器的权重
+    ​			-em会根据字体大小的改变而改变
     
-      ​	内联（行内）样式     1,0,0,0
+    ```css
+    .div1{
+            font-size: 30px;  /*em根据字体大小来改变*/
+            width: 10em;
+            height: 10em;
+            background-color: greenyellow;
+         }
+    ```
     
-      ​	id选择器					0,1,0,0
+    ​			rem
     
-      ​	类选择器					0,0,1,0
+    ​			-rem是相对于根元素(html)的字体大小来计算的
     
-      ​	元素选择器				0,0,0,1
+    ```css
+    html{
+        font-size: 100px;
+        }
+    .div2{
+        width: 10rem; 
+        height: 10rem;
+        background-color: greenyellow;
+    }
+    ```
     
-      ​	通配选择器				0,0,0,0
-    
-      ​	继承选择器				没有优先级
-    
-    - 比较优先级时，需要将所有的选择器的优先级进行相加进行计算，最后游戏那几越高，则越优先显示（分组选择器是单独计算）。选择器的累加不会超过其最大的数量级，比如，类选择器的在高也不会超过id选择器
-    
-    -  如果优先级计算后相同，此时优先级则使用靠下的样式
-    
-      ```html
+- ```html
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Document</title>
       <style>
-          .red{color: red;}
-          .di{color: blue;}/*此时，.id 选择器优先级高*/
-          
-          .di{color: blue;}
-          .red{color: red;}/*此时， .red 选择器优先级高*/
+          html{
+              font-size: 30px;
+          }
+          .box1{
+  
+              /* 
+                  长度单位：
+                      像素
+                          -屏幕实际上是由一个个小点构成的
+                          -不同屏幕的像素大小不同，像素越小的屏幕显示的效果越清晰
+                          -所以同样的200px在不同的设备下显示效果不一样
+                      百分比
+                          -也可以将属性值设置为相对于其父元素属性的百分比
+                          -设置百分比可以使子元素跟随父元素的改变而改变
+  
+                      em
+                          -相对于元素的字体大小来计算的
+                          1em = 1font-size
+                          - em会根据字体大小的改变而改变
+                      rem
+                          -rem是相对于根元素(html)的字体大小来计算的
+  
+               */
+              width: 200px;
+              height: 200px;
+              background-color: pink;
+          }
+          .box2{
+              width: 50%;  
+              height: 50%;
+              background-color: red;
+              
+          }
+          .box3{
+                font-size: 30px;  /*em根据字体大小来改变*/
+                width: 10em;
+                height: 10em;
+                background-color: greenyellow;
+              }
+          .box4{
+                width: 10rem; 
+                height: 10rem;
+                background-color: greenyellow;
+              }
       </style>
-      <body>
-          <div class="red di">
-              我是div
-          </div>
-      </body>
-      ```
-    
-    - 可以在某一个样式的后边添加 !important ，则此时该样式为最高的优先级
-    
-      ​        ☆注意：在开发中这个玩意一定要慎用
-    
-      ```css
-      .red{color: red !important;}/*优先级最高，甚至大于行内元素*/
-      ```
-    
-      ## 像素和百分比
-    
-      - 长度单位：
-    
-        ​          像素
-    
-        ​            -屏幕实际上是由一个个小点构成的
-    
-        ​            -不同屏幕的像素大小不同，像素越小的屏幕显示的效果越清晰
-    
-        ​            -所以同样的200px在不同的设备下显示效果不一样
-    
-        ​          百分比
-    
-        ​            -也可以将属性值设置为相对于其父元素属性的百分比
-    
-        ​            -设置百分比可以使子元素跟随父元素的改变而改变
-    
-      ```html
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-          <meta charset="UTF-8">
-          <title>Document</title>
-          <style>
-              .box1{
-      
-                  /* 
-                      长度单位：
-                          像素
-                              -屏幕实际上是由一个个小点构成的
-                              -不同屏幕的像素大小不同，像素越小的屏幕显示的效果越清晰
-                              -所以同样的200px在不同的设备下显示效果不一样
-                          百分比
-                              -也可以将属性值设置为相对于其父元素属性的百分比
-                              -设置百分比可以使子元素跟随父元素的改变而改变
-      
-                   */
-                  width: 200px;
-                  height: 200px;
-                  background-color: pink;
-              }
-              .box2{
-                  width: 50%;  
-                  height: 50%;
-                  background-color: red;
-                  
-              }
-          </style>
-      </head>
-      <body>
-          <div class="box1"></div>
-          <div class="box2"></div>
-      </body>
-      </html>
-      ```
+  </head>
+  <body>
+      <div class="box1"></div>
+      <div class="box2"></div>
+      <div class="box3"></div>
+      <div class="box4"></div>
+  </body>
+  </html>
+  ```
+
+## 颜色
+- 颜色单位：
+	在CSS中可以直接使用颜色单位来设置各种颜色
+     比如：red、orange、yellow、blue......
+     但是在CSS中直接使用颜色名字非常的不方便
+  
+  ```css
+  backgr background-color: red;
+  ```
+  
+    RGB值：
+    	-RGB通过三种颜色的不同浓度来调配出不同的颜色
+        -每一种颜色的范围在0~255（0%~100%） 之间
+        -语法：RGB();
+  ```css
+   background-color: rgb(0,200,30);
+  ```
+    RGBA：
+    	-就是在RGB的基础上增加了一个a表示不同明度
+        -需要四个值，前三个和RGB一样，第四个表示不透明度  
+         1表示完全不透明 0表示完全透明 .5半透明
+  ```css
+   background-color: rgba(0,200,30,.3);
+  ```
+    十六进制的RGB值：
+    	-语法：#红色绿色蓝色
+        -颜色浓度通过 00-ff
+        -如果颜色两位两位的重复可以简写
+             #aabbcc -->  #abc
+  
+  ```css
+   background-color: #ff0000;
+   background-color: #f00;/*简写*/
+  ```
+  
+  

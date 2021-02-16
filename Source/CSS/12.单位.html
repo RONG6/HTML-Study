@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <style>
+        html{
+            font-size: 30px;
+        }
         .box1{
 
             /* 
@@ -16,6 +19,13 @@
                         -也可以将属性值设置为相对于其父元素属性的百分比
                         -设置百分比可以使子元素跟随父元素的改变而改变
 
+                    em
+                        -相对于元素的字体大小来计算的
+                        1em = 1font-size
+                        - em会根据字体大小的改变而改变
+                    rem
+                        -rem是相对于根元素(html)的字体大小来计算的
+
              */
             width: 200px;
             height: 200px;
@@ -27,10 +37,23 @@
             background-color: red;
             
         }
+        .box3{
+              font-size: 30px;  /*em根据字体大小来改变*/
+              width: 10em;
+              height: 10em;
+              background-color: greenyellow;
+            }
+        .box4{
+              width: 10rem; 
+              height: 10rem;
+              background-color: greenyellow;
+            }
     </style>
 </head>
 <body>
     <div class="box1"></div>
     <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
 </body>
 </html>
