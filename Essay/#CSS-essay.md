@@ -769,4 +769,14 @@ p ~ span{color: black:}
    background-color: #f00;/*简写*/
   ```
   
+  ​	HSL值 HSLA值
   
+  ​		-H 色相(0~360)
+  
+  ​		-S 饱和度(0~100%)
+  
+  ​		-L 亮度(0~100%)
+  
+  ```css
+  background-color: hsl(15,30%,50%);
+  ```
