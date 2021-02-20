@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片列表</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <style>
+        /* 设置body的背景颜色 */
+        body{
+            background-color: antiquewhite;
+        }
+        /* 设置ul的样式 */
+        .img-list{
+            width: 263px;
+            height: 648px;
+            overflow: hidden;/*裁剪溢出的内容*/
+            background-color: #F4F4F4;
+        }
+        /* 设置li的下外边距 */
+        .img-list li{/*后代选择器*/
+            margin-bottom: 10px;
+        }
+        .img-list img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+     <ul class="img-list">
+         <li>
+             <a href="javascript:;">
+                 <img src="./img/jd1.webp" alt="">
+             </a>
+         </li>
+
+         <li>
+            <a href="javascript:;">
+                <img src="./img/jd2.webp" alt="">
+            </a>
+        </li>
+
+        <li>
+            <a href="javascript:;">
+                <img src="./img/jd3.webp" alt="">
+            </a>
+        </li>
+     </ul>
+</body>
+</html>
