@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网易的新闻列表</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <style>
+        a {
+            /* 统一去除下划线 */
+            text-decoration: none;
+        }
+
+        .new {
+            /* 设置容器的样式 */
+            width: 300px;
+            height: 358px;
+
+            /* 方便观察 */
+            border-color: #fefefe; 
+            margin: 50px auto;
+
+            /* 设置上边框 */
+            border-top: 1px solid #ddd;
+        }
+
+
+        .new-title {
+            display: inline-block;
+            /*为了边框和文字宽度一致，讲h2转换行内块元素*/
+
+            height: 30px;
+
+            /* 通过margin-top将h2上移，盖住上边框 */
+            margin-top: -1px;
+            padding-top: 10px;
+        }
+
+        /* 设置title中的超链接样式 */
+        .new-title a {
+            text-decoration: none;
+            /*去除下换线*/
+            color: black;
+            /* 设置文字加粗效果 */
+            font-weight: bold;
+        }
+
+
+        .new-img {
+            height: 150px;
+        }
+
+        /* 设置图片的文字加粗效果 */
+        .new-img .img-title {
+            /* 向上移动文字 */
+            margin-top: -30px;
+            color: #fff;
+            font-weight: bold;
+            /*设置加粗*/
+            padding-left: 30px;
+        }
+
+        /* 设置新闻列表 */
+        .list {
+            /* 设置上外边距 */
+            margin-top: 20px;
+            /* 设置左侧 */
+            /* padding-left: 14px; */
+
+        }
+
+        /* 设置新闻列表 */
+        .list li {
+            margin-bottom: 17px;
+            /*设置下外边距*/
+        }
+
+
+        /* 设置li中的文字 */
+        .list li a {
+            font-size: 14px;
+        }
+
+        /* 通过伪元素，来为每一个li添加项目符号 */
+        .list li::before {
+            content: '●';
+            color: rgb(218, 218, 218);
+            font-size: 12px;
+            margin-right: 4px;
+
+        }
+
+        .list li a:hover {
+            color: red;
+        }
+
+        /*超链接鼠标移入的效果*/
+    </style>
+</head>
+
+<body>
+    <!-- 创建新闻列表的外部容器 -->
+    <div class="new">
+        <!-- 标题 -->
+        <h2 class="new-title">
+            <a href="#">体育</a>
+        </h2>
+        <!-- 图片容器 -->
+        <div class="new-img">
+            <a href="#">
+                <img src="./img/wynew.jpeg" alt="费德勒">
+
+                <!-- 图片标题 -->
+                <h3 class="img-title">费德勒首负迪米 扶额头不满发挥</h3>
+            </a>
+        </div>
+
+        <!--新闻列表 -->
+        <ul class="list">
+            <li><a href="#">新闻1</a></li>
+            <li><a href="#">新闻2</a></li>
+            <li><a href="#">新闻3</a></li>
+            <li><a href="#">新闻4</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>
